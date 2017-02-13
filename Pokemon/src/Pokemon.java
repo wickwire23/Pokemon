@@ -7,15 +7,14 @@ public class Pokemon
 		 String type;
 		 double attack;
 		 double defense;
-		 double speed;
 		 double health;
-		public Pokemon (String n,String t, double a, double d, double s, double h)
+		public Pokemon (String n,String t, double a, double d, double h)
 			{
 				name=n;
 				type=t;
 				attack=a;
 				defense=d;
-				speed=s;
+
 				health=h;
 			}
 		
@@ -67,16 +66,6 @@ public class Pokemon
 		public void setDefense(double defense)
 			{
 				this.defense = defense;
-			}
-
-		public double getSpeed()
-			{
-				return speed;
-			}
-
-		public void setSpeed(double speed)
-			{
-				this.speed = speed;
 			}
 
 		public double getHealth()

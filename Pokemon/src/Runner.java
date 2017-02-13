@@ -16,6 +16,7 @@ public class Runner
 		static int townChoice2=0;
 		static ArrayList<Pokemon>pokemonStats;
 		static ArrayList<Town>townChoice;
+		static String[][] map=new String[15][15];
 		public static void main(String[] args)
 			{
 						greetPlayer();
@@ -35,11 +36,11 @@ public class Runner
 				public static void createStats()
 					{
 						pokemonStats = new ArrayList<Pokemon>();
-						pokemonStats.add(new Pokemon("Pikachu","Electric",25,95,90,100));
-						pokemonStats.add(new Pokemon("Gengar","Ghost and Poisen",25,95,110,100));
-						pokemonStats.add(new Pokemon("Turtwig","Grass",25,95,31,100));
-						pokemonStats.add(new Pokemon("Farfetch'd","Normal and Flying",35,100,60,100));
-						pokemonStats.add(new Pokemon("Celebi","Phychc and Grass",25,100,100,100));
+						pokemonStats.add(new Pokemon("Pikachu","Electric",25,95,100));
+						pokemonStats.add(new Pokemon("Gengar","Ghost and Poisen",25,95,100));
+						pokemonStats.add(new Pokemon("Turtwig","Grass",25,95,100));
+						pokemonStats.add(new Pokemon("Farfetch'd","Normal and Flying",35,100,100));
+						pokemonStats.add(new Pokemon("Celebi","Phychc and Grass",25,100,100));
 			}
 				public static void choosePokemon()
 				{
@@ -132,10 +133,12 @@ public class Runner
 										}
 								}	
 					int townChoice2= userInput.nextInt();
-					switch(townChoice2)
+					int mapGenerator =(int)(Math.random()*224)+1;
+					int mapPlaces=0;
+					switch(mapGenerator)
 					{
 						case 1:
-								System.out.println("Fantastic! Welcome young padawan!");
+								
 								break;
 						case 2:
 							System.out.println("A great choice for a casual player!");
@@ -147,7 +150,7 @@ public class Runner
 							System.out.println("Good luck. You will need it.");
 							break;
 					}
-					System.out.println("Now that you have chosen your location it is time to travel!");
+					System.out.println("Let us be Off!");
 					System.out.println(".");
 					try
 						{
@@ -188,6 +191,20 @@ public class Runner
 					}
 				public static void walkAround()
 				{
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
 					int walkTime = (int)(Math.random()*8)+1;
 					System.out.println("What a Beautiful day!");
 					for (int i=0; i<walkTime; i++)
