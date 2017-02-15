@@ -14,7 +14,6 @@ public class Pokemon
 				type=t;
 				attack=a;
 				defense=d;
-
 				health=h;
 			}
 		
