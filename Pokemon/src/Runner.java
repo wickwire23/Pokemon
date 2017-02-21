@@ -103,34 +103,14 @@ public class Runner extends JFrame implements KeyListener
 				public static void choosePokemon()
 				{
 					System.out.println("Choose your Pokemon!");
-					try
-						{
-							Thread.sleep(1500);
-						} catch (InterruptedException e)
-						{
-							e.printStackTrace();
-						}
 					System.out.println("Here are your choices!");
 					
-					try
-						{
-							Thread.sleep(1500);
-						} catch (InterruptedException e)
-						{
-							e.printStackTrace();
-						}
+			
 					int counter=0;
 					for(Pokemon m:pokemon)
 						{
 							counter++;
 							System.out.println("(" + counter +")" +" " + m.getName());
-							try
-								{
-									Thread.sleep(1000);
-								} catch (InterruptedException e)
-								{
-									e.printStackTrace();
-								}
 						}
 					Scanner userInput = new Scanner(System.in);
 					choice= userInput.nextLine();
@@ -139,22 +119,28 @@ public class Runner extends JFrame implements KeyListener
 					{
 						case "1":
 							myPokemon = pokemon.get(0);
+							
 							pokemon.remove(0);
 							break;
 						case "2":
 							myPokemon = pokemon.get(1);
 							pokemon.remove(1);
+							System.out.println("Fantastic! You picked"+ " " + myPokemon.getName() );
 							break;
 						case "3":
 							myPokemon = pokemon.get(2);
 							pokemon.remove(2);
+							System.out.println("Fantastic! You picked"+ " " + myPokemon.getName() );
 							break;
-							
+						default:
+							System.out.println("Not an option");
+							choosePokemon();
+							break;
 							
 					}
 					
 					
-					System.out.println("Fantastic! You picked"+ " " + myPokemon.getName() );
+				
 								
 				}
 				public static void startAdventure()
@@ -164,13 +150,7 @@ public class Runner extends JFrame implements KeyListener
 					Scanner userInput = new Scanner(System.in);
 					
 					System.out.println("Which town would you like to venture to?");
-					try
-						{
-							Thread.sleep(1000);
-						} catch (InterruptedException e)
-						{
-							e.printStackTrace();
-						}
+				
 							townChoice = new ArrayList<Town>();
 							townChoice.add(new Town("(1)","Pallet Town",""));
 							townChoice.add(new Town("(2)","Veridian City",""));
@@ -179,55 +159,106 @@ public class Runner extends JFrame implements KeyListener
 							for(Town m:townChoice)
 								{
 									System.out.println(m.getNumber()+m.getTownName()+m.getDifficulty());
-									try
-										{
-											Thread.sleep(1000);
-										} catch (InterruptedException e)
-										{
-											e.printStackTrace();
-										}
 								}	
-					int townChoice2= userInput.nextInt();
+					String townChoice2= userInput.nextLine();
 					switch(townChoice2)
 					{
-						case 1:
+						case "1":
+							System.out.println("ALready Here!");
 								break;
-						case 2:
+						case "2":
 							System.out.println("A great choice!");
+							System.out.println("Let us be Off!");
+							System.out.println(".");
+							try
+								{
+									Thread.sleep(2000);
+								} catch (InterruptedException e)
+								{
+									e.printStackTrace();
+								}
+							System.out.println("..");
+							try
+								{
+									Thread.sleep(2000);
+								} catch (InterruptedException e)
+								{
+									e.printStackTrace();
+								}
+							System.out.println("...");
+							try
+								{
+									Thread.sleep(2000);
+								} catch (InterruptedException e)
+								{
+									e.printStackTrace();
+								}
+							System.out.println("We have arrived! ");
 							break;
-						case 3:
+						case "3":
 							System.out.println("Prepare yourself!");
+							System.out.println("Let us be Off!");
+							System.out.println(".");
+							try
+								{
+									Thread.sleep(3000);
+								} catch (InterruptedException e)
+								{
+									e.printStackTrace();
+								}
+							System.out.println("..");
+							try
+								{
+									Thread.sleep(3000);
+								} catch (InterruptedException e)
+								{
+									e.printStackTrace();
+								}
+							System.out.println("...");
+							try
+								{
+									Thread.sleep(3000);
+								} catch (InterruptedException e)
+								{
+									e.printStackTrace();
+								}
+							System.out.println("We have arrived! ");
 							break;
-						case 4:
+						case "4":
 							System.out.println("Good luck. You will need it.");
+							System.out.println("Let us be Off!");
+							System.out.println(".");
+							try
+								{
+									Thread.sleep(4000);
+								} catch (InterruptedException e)
+								{
+									e.printStackTrace();
+								}
+							System.out.println("..");
+							try
+								{
+									Thread.sleep(4000);
+								} catch (InterruptedException e)
+								{
+									e.printStackTrace();
+								}
+							System.out.println("...");
+							try
+								{
+									Thread.sleep(4000);
+								} catch (InterruptedException e)
+								{
+									e.printStackTrace();
+								}
+							System.out.println("We have arrived! ");
+							break;
+						default:
+							System.out.println("You cant do that");
+							startAdventure();
 							break;
 					}
-					System.out.println("Let us be Off!");
-					System.out.println(".");
-					try
-						{
-							Thread.sleep(1000);
-						} catch (InterruptedException e)
-						{
-							e.printStackTrace();
-						}
-					System.out.println("..");
-					try
-						{
-							Thread.sleep(1000);
-						} catch (InterruptedException e)
-						{
-							e.printStackTrace();
-						}
-					System.out.println("...");
-					try
-						{
-							Thread.sleep(1000);
-						} catch (InterruptedException e)
-						{
-							e.printStackTrace();
-						}
-					System.out.println("We have arrived at " + townChoice.get(townChoice2 -1).getTownName() + "!");
+					
 					
 				}
 				
@@ -577,7 +608,6 @@ public class Runner extends JFrame implements KeyListener
 								}
 					}
 		System.out.println();
-		System.out.println("Here is your map! you are the '0'. Move with your arrow keys!");
 		
 				}
 				public static void battle()
@@ -591,41 +621,74 @@ public class Runner extends JFrame implements KeyListener
 					System.out.println("(3)|Swords Dance|          (4)|End|    ");
 					System.out.println("    ~~~~~~~~~~~~              ~~~~~  ");
 					Scanner userInput = new Scanner(System.in);
-					 int battleChoice = userInput.nextInt();;
+					 String battleChoice = userInput.nextLine();;
 					
 					switch(battleChoice)
 					{
-						case 1:
+						case "1":
 								{
 									quickAttack();
+									if(battlePokemon.getHealth()<= 0)
+									{
+										endBattle();
+										
+									}
+									else
+										{
+											aiAttack();
+										}
 									break;
 								}
-						case 2:
+						case "2":
 								{
 									doHarden();
+									if(battlePokemon.getHealth()<= 0)
+									{
+										endBattle();
+										
+									}
+									else
+										{
+											aiAttack();
+										}
 									break;
 								}
-						case 3:
+						case "3":
 								{
 									swordsDance();
+									if(battlePokemon.getHealth()<= 0)
+									{
+										endBattle();
+										
+									}
+									else
+										{
+											aiAttack();
+										}
 									break;
 								}
-						case 4:
+						case "4":
 								{
 									endGame();
+									if(battlePokemon.getHealth()<= 0)
+									{
+										endBattle();
+										
+									}
+									else
+										{
+											aiAttack();
+										}
 									break;
 								}
+						default:
+							System.out.println("Not an option");
+							battle();
+							break;
 					}
-					if(battlePokemon.getHealth()<= 0)
-					{
-						endBattle();
-						
-					}
-					else
-						{
-							aiAttack();
-						}
+			
 				}
+				
 				public static void quickAttack()
 				{
 				battlePokemon.setHealth(battlePokemon.getHealth()-myPokemon.getAttack()+battlePokemon.getDefense()/10);
@@ -863,8 +926,11 @@ public class Runner extends JFrame implements KeyListener
 				public static void encounter()
 				{
 					
-//					int walkTime = (int)(Math.random()*8)+1;
-					int pokemonEncounter = (int)(Math.random()*size);
+					int walkTime = (int)(Math.random()*6)+1;
+					int walkTime2 =(int)(Math.random()*6)+1;
+					if(walkTime +walkTime2==7)
+					{
+					pokemonEncounter =(int)(Math.random()*size);
 					size--;
 					battlePokemon = pokemon.get(pokemonEncounter);
 					if (pokemonEncounter == 0)
@@ -882,6 +948,7 @@ public class Runner extends JFrame implements KeyListener
 //							two = ;
 							battlePokemon = pokemon.get(2);
 						}
+					
 //					if (pokemonEncounter == 3)
 //						{
 //							three = pokemon.get(3);
@@ -891,6 +958,7 @@ public class Runner extends JFrame implements KeyListener
 					pokemon.remove(pokemonEncounter);
 					System.out.println("A wild"+" " + battlePokemon.getName()+ " " + "appeared!!");
 					battle();
+					}
 				}
 				
 			
