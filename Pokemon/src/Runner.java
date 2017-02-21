@@ -1,9 +1,62 @@
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 //Hello myself
-public class Runner
+public class Runner extends JFrame implements KeyListener
 	{
-		static int size=4;
+	JLabel label;
+	public Runner(String s)
+	{
+		super(s);
+		JPanel p = new JPanel();
+		label = new JLabel("Arrow Keys");
+		p.add(label);
+		add(p);
+		addKeyListener(this);
+		setSize(222,100);
+		setVisible(true);
+	}
+	
+	@Override
+	public void keyPressed(KeyEvent key) {
+		// TODO Auto-generated method stub
+		 if (key.getKeyCode() == KeyEvent.VK_LEFT) 
+		    {
+		       moveLeft();
+		    }
+
+		    if (key.getKeyCode() == KeyEvent.VK_RIGHT) 
+		    {
+		      moveRight();
+		    }
+
+		    if (key.getKeyCode() == KeyEvent.VK_UP) 
+		    {
+		      moveUp();
+		    }
+
+		    if (key.getKeyCode() == KeyEvent.VK_DOWN) 
+		    {
+		       moveDown();
+		    }
+			
+	}
+	@Override
+	public void keyReleased(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void keyTyped(KeyEvent key) 
+	{
+	   
+	}
+		static int size=2;
 		static int pokemonEncounter;
 		static Pokemon myPokemon;
 		static Pokemon battlePokemon;
@@ -19,13 +72,18 @@ public class Runner
 		static String[][] map=new String[10][30];
 		static int col;
 		static int row;
+		static int yourCol=15;
+		static int yourRow=4;
+		static String temp1;
+		static String temp2;
 		public static void main(String[] args)
 			{
-//						greetPlayer();
-//						createStats();
-//						choosePokemon();
-//						startAdventure();
-//						explainBattle();
+						new Runner("Pokemon");
+						greetPlayer();
+						createStats();
+						choosePokemon();
+						startAdventure();
+						explainBattle();
 						walkAround();
 			}
 				public static void greetPlayer()
@@ -41,7 +99,7 @@ public class Runner
 						pokemon.add(new Pokemon("Piplup","Water",25,95,100));
 						pokemon.add(new Pokemon("Turtwig","Grass",25,95,100));
 						pokemon.add(new Pokemon("ChimChar","Fire",35,95,100));
-			}
+					}
 				public static void choosePokemon()
 				{
 					System.out.println("Choose your Pokemon!");
@@ -75,7 +133,8 @@ public class Runner
 								}
 						}
 					Scanner userInput = new Scanner(System.in);
-					String choice= userInput.nextLine();
+					choice= userInput.nextLine();
+					
 					switch(choice)
 					{
 						case "1":
@@ -90,7 +149,11 @@ public class Runner
 							myPokemon = pokemon.get(2);
 							pokemon.remove(2);
 							break;
+							
+							
 					}
+					
+					
 					System.out.println("Fantastic! You picked"+ " " + myPokemon.getName() );
 								
 				}
@@ -502,7 +565,8 @@ public class Runner
 					}
 				}
 			}
-				map[4][15]="0";
+				temp1 =map[yourRow][yourCol];
+				map[yourRow][yourCol]="0";
 				for(row=0;row<map.length;row++)
 					{
 						System.out.println();
@@ -515,58 +579,6 @@ public class Runner
 		System.out.println();
 		System.out.println("Here is your map! you are the '0'. Move with your arrow keys!");
 		
-					
-				
-					
-					
-					
-					
-//					int walkTime = (int)(Math.random()*8)+1;
-//					System.out.println("What a Beautiful day!");
-//					for (int i=0; i<walkTime; i++)
-//						{
-//							try
-//								{
-//									Thread.sleep(750);
-//								} catch (InterruptedException e)
-//								{
-//									e.printStackTrace();
-//								}	
-//							System.out.print(".");
-//						}
-//					if(size <= 0)
-//					{
-//						endGame();
-//						return;
-//					}
-//					int pokemonEncounter = (int)(Math.random()*size);
-//					size--;
-//					battlePokemon = pokemon.get(pokemonEncounter);
-//					pokemon.remove(pokemonEncounter);
-//					if (pokemonEncounter == 0)
-//						{
-//							zero = pokemonStats.get(0) ;
-//							battlePokemon = zero;
-//						}
-//					if (pokemonEncounter == 1)
-//						{
-//							one = pokemonStats.get(1);
-//							battlePokemon = one;
-//						}
-//					if (pokemonEncounter == 2)
-//						{
-//							two = pokemonStats.get(2);
-//							battlePokemon = two;
-//						}
-//					if (pokemonEncounter == 3)
-//						{
-//							three = pokemonStats.get(3);
-//							battlePokemon = three;
-//							
-//						}
-//
-//					System.out.println("A wild"+" " + battlePokemon.getName()+ " " + "appeared!!");
-//					battle();
 				}
 				public static void battle()
 				{
@@ -579,7 +591,8 @@ public class Runner
 					System.out.println("(3)|Swords Dance|          (4)|End|    ");
 					System.out.println("    ~~~~~~~~~~~~              ~~~~~  ");
 					Scanner userInput = new Scanner(System.in);
-					int battleChoice = userInput.nextInt();
+					 int battleChoice = userInput.nextInt();;
+					
 					switch(battleChoice)
 					{
 						case 1:
@@ -721,7 +734,165 @@ public class Runner
 					System.out.println();
 					System.out.println("The game has ended! I know it was very boring but hey I had fun!");
 					System.exit(0);
+				}
+				public static void moveLeft()
+				{
+					if(yourCol-1<0)
+					{
+						System.out.println("Invalid Move");
+					}
+					else
+					{
+					temp2 = map[yourRow][yourCol-1];
+					map[yourRow][yourCol]=temp1;
+					yourCol-=1;
+					map[yourRow][yourCol]="0";
+					map[yourRow][yourCol+1]=temp1;
+					for(row=0;row<map.length;row++)
+						{
+							System.out.println();
+							for(col=0;col<map[row].length;col++)
+									{
+										System.out.print(map[row][col]);
+										
+									}
+						}
+					System.out.println();
+					temp1=temp2;
+					encounter();
+					}
+				}
+				public static void moveRight()
+				{
+					if(size <= 0)
+					{
+						endGame();
+						return;
+					}
+					if(yourCol+1>=30)
+					{
+						System.out.println("Invalid Move");
+					}
+					else
+					{
+					temp2 = map[yourRow][yourCol+1];
+					map[yourRow][yourCol]=temp1;
+					yourCol+=1;
+					map[yourRow][yourCol]="0";
+					map[yourRow][yourCol-1]=temp1;
+					for(row=0;row<map.length;row++)
+						{
+							System.out.println();
+							for(col=0;col<map[row].length;col++)
+									{
+										System.out.print(map[row][col]);
+										
+									}
+						}
+					System.out.println();
+					temp1=temp2;
+					encounter();
+					}
+				}
+				public static void moveUp()
+				{
+					if(size <= 0)
+					{
+						endGame();
+						return;
+					}
+					if(yourRow-1<0)
+					{
+						System.out.println("Invalid Move");
+					}
+					else
+					{
+					temp2 = map[yourRow-1][yourCol];
+					map[yourRow][yourCol]=temp1;
+					yourRow-=1;
+					map[yourRow][yourCol]="0";
+					map[yourRow+1][yourCol]=temp1;
+					for(row=0;row<map.length;row++)
+						{
+							System.out.println();
+							for(col=0;col<map[row].length;col++)
+									{
+										System.out.print(map[row][col]);
+										
+									}
+						}
+					System.out.println();
+					temp1=temp2;
+					encounter();
+					}
 					
 				}
+				public static void moveDown()
+				{
+					if(size <= 0)
+					{
+						endGame();
+						return;
+					}
+					if(yourRow+1>9)
+					{
+						System.out.println("Invalid Move");
+					}
+					else
+					{
+					temp2 = map[yourRow+1][yourCol];
+					map[yourRow][yourCol]=temp1;
+					yourRow+=1;
+					map[yourRow][yourCol]="0";
+					map[yourRow-1][yourCol]=temp1;
+					for(row=0;row<map.length;row++)
+						{
+							System.out.println();
+							for(col=0;col<map[row].length;col++)
+									{
+										System.out.print(map[row][col]);
+										
+									}
+						}
+					System.out.println();
+					temp1=temp2;
+					encounter();
+					}
+					
+				}
+				public static void encounter()
+				{
+					
+//					int walkTime = (int)(Math.random()*8)+1;
+					int pokemonEncounter = (int)(Math.random()*size);
+					size--;
+					battlePokemon = pokemon.get(pokemonEncounter);
+					if (pokemonEncounter == 0)
+						{
+//							zero =  ;
+							battlePokemon = pokemon.get(0);
+						}
+					if (pokemonEncounter == 1)
+						{
+//							one = ;
+							battlePokemon = pokemon.get(1);
+						}
+					if (pokemonEncounter == 2)
+						{
+//							two = ;
+							battlePokemon = pokemon.get(2);
+						}
+//					if (pokemonEncounter == 3)
+//						{
+//							three = pokemon.get(3);
+//							battlePokemon = three;
+//							
+//						}
+					pokemon.remove(pokemonEncounter);
+					System.out.println("A wild"+" " + battlePokemon.getName()+ " " + "appeared!!");
+					battle();
+				}
+				
+			
 				
 }
